@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+import StandardLayout from '../../layouts/StandardLayout'
 import { logout } from '../../actions/authActions.js'
 
 class LogoutPage extends React.Component {
@@ -11,11 +13,9 @@ class LogoutPage extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-4 col-md-offset-4">
-          <p>You are now logged out.</p>
-        </div>
-      </div>
+      <StandardLayout>
+        <p>You are now logged out.</p>
+      </StandardLayout>
     )
   }
 }
