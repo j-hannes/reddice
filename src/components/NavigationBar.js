@@ -1,51 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import NavigationWrapper from './NavigationWrapper.js'
+import { userLinks, guestLinks } from '../config/navigation.json'
 
-class NavigationBar extends React.Component {
-  render() {
-    const { isAuthenticated } = this.props.auth
+import NavigationWrapper from './NavigationWrapper'
 
-    const userLinks = [
-      {
-        text: 'New Event',
-        route: '/new-event',
-      },
-      {
-        text: 'Logout',
-        route: '/logout',
-      },
-    ]
-
-    const guestLinks = [
-      {
-        text: 'Sign Up',
-        route: '/signup',
-      },
-      {
-        text: 'Login',
-        route: '/login',
-      },
-    ]
-
-    return (
-      <NavigationWrapper
-        links={isAuthenticated ? userLinks : guestLinks}
-      />
-    )
-  }
-}
+const NavigationBar = props =>
+  <NavigationWrapper
+    links={props.isAuthenticated ? userLinks : guestLinks}
+  />
 
 NavigationBar.propTypes = {
-  auth: React.PropTypes.shape({
-    isAuthenticated: React.PropTypes.bool.isRequired,
-  }),
+  isAuthenticated: React.PropTypes.bool.isRequired,
 }
 
-function mapStateToProps(state) {
-  return {
-    auth: state.auth,
-  }
-}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+})
+
 export default connect(mapStateToProps)(NavigationBar)

@@ -5,10 +5,9 @@ Project has been created by following along this awesome
 
 ## next steps
 
-- [ ] use eslint
+- [x] use eslint (3.6)
 - [ ] HOC form
 - [x] standard layout
-- [ ] refactor application
 - [ ] use only stateless components, put everything else in redux
 - [ ] group files by feature
 - [ ] recreate client in elm

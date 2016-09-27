@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import StandardLayout from '../../layouts/StandardLayout'
-import { logout } from '../../actions/authActions.js'
+import { logout } from '../../actions/authActions'
 
 class LogoutPage extends React.Component {
 

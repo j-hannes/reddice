@@ -3,16 +3,12 @@ import {
   DELETE_FLASH_MESSAGE,
 } from './types'
 
-export function addFlashMessage(message) {
-  return {
-    type: ADD_FLASH_MESSAGE,
-    message,
-  }
-}
+export const addFlashMessage = message => ({
+  type: ADD_FLASH_MESSAGE,
+  message,
+})
 
-export function deleteFlashMessage(id) {
-  return {
-    type: DELETE_FLASH_MESSAGE,
-    id,
-  }
-}
+export const deleteFlashMessage = id => ({
+  type: DELETE_FLASH_MESSAGE,
+  id,
+})

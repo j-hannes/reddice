@@ -1,0 +1,22 @@
+{
+  "userLinks": [
+    {
+      "text": "New Event",
+      "route": "/new-event"
+    },
+    {
+      "text": "Logout",
+      "route": "/logout"
+    }
+  ],
+  "guestLinks": [
+    {
+      "text": "Sign Up",
+      "route": "/signup"
+    },
+    {
+      "text": "Login",
+      "route": "/login"
+    }
+  ]
+}

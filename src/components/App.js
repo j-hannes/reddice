@@ -17,6 +17,8 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+  // TODO look up what proptypes children should have
+  // eslint-disable-next-line react/forbid-prop-types
   children: React.PropTypes.object,
 }
 

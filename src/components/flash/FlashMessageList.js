@@ -4,31 +4,25 @@ import FlashMessage from './FlashMessage'
 import { Message, func } from '../../types'
 import { deleteFlashMessage } from '../../actions/flashMessages'
 
-class FlashMessageList extends React.Component {
-  render() {
-    const messages = this.props.messages.map(message =>
+const FlashMessageList = props =>
+  <div>
+    {props.messages.map(message =>
       <FlashMessage
         key={message.id}
         message={message}
-        deleteFlashMessage={this.props.deleteFlashMessage}
+        deleteFlashMessage={props.deleteFlashMessage}
       />
-    )
-    return (
-      <div>{messages}</div>
-    )
-  }
-}
+    )}
+  </div>
 
 FlashMessageList.propTypes = {
   messages: Message,
   deleteFlashMessage: func,
 }
 
-function mapStateToProps(state) {
-  return {
-    messages: state.flashMessages,
-  }
-}
+const mapStateToProps = state => ({
+  messages: state.flashMessages,
+})
 
 export default connect(mapStateToProps, {
   deleteFlashMessage,

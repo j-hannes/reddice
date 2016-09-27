@@ -31,8 +31,13 @@ class FlashMessage extends React.Component {
     )
   }
 }
+
 FlashMessage.propTypes = {
-  message: React.PropTypes.object.isRequired,
+  message: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
+    text: React.PropTypes.string.isRequired,
+  }).isRequired,
   deleteFlashMessage: React.PropTypes.func.isRequired,
 }
 
