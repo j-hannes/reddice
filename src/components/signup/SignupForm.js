@@ -1,86 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import map from 'lodash/map'
-import classnames from 'classnames'
-import Validator from 'validator'
-import isEmpty from 'lodash/isEmpty'
 
 import timezones from '../../data/timezones'
-import TextFieldGroup from '../common/TextFieldGroup'
+import Form from '../common/Form'
 import {
   userSignupRequest,
   isUserExists,
 } from '../../actions/signupActions'
 import { addFlashMessage } from '../../actions/flashMessages'
 
-function validateInput(data) {
-  const errors = {}
-
-  if (Validator.isNull(data.username)) {
-    errors.username = 'This field is required'
-  }
-  if (Validator.isNull(data.email)) {
-    errors.email = 'This field is required'
-  } else if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid'
-  }
-  if (Validator.isNull(data.password)) {
-    errors.password = 'This field is required'
-  }
-  if (Validator.isNull(data.passwordConfirmation)) {
-    errors.passwordConfirmation = 'This field is required'
-  } else if (!Validator.equals(data.password, data.passwordConfirmation)) {
-    errors.passwordConfirmation = 'Passwords must match'
-  }
-  if (Validator.isNull(data.timezone)) {
-    errors.timezone = 'This field is required'
-  }
-
-  return {
-    errors,
-    isValid: isEmpty(errors),
-  }
-}
-
 class SignupForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
-      timezone: '',
-      errors: {},
-      isLoading: false,
-      invalid: false,
-    }
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
+    this.signup = this.signup.bind(this)
     this.checkUserExists = this.checkUserExists.bind(this)
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
-  onSubmit(e) {
-    e.preventDefault()
-    if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true })
-      this.props.userSignupRequest(this.state).then(
-        () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: 'You signed up successfully. Welcome!',
-          })
-          this.context.router.push('/')
-        },
-        ({ response }) => {
-          this.setState({ errors: response.data, isLoading: false })
-        }
-      )
-    }
+  signup(values, handleServerError) {
+    this.props.userSignupRequest(values)
+      .then(() => {
+        this.props.addFlashMessage({
+          type: 'success',
+          text: 'You signed up successfully. Welcome!',
+        })
+        this.context.router.push('/')
+      })
+      .catch(handleServerError)
   }
 
   checkUserExists(e) {
@@ -102,87 +47,49 @@ class SignupForm extends React.Component {
     }
   }
 
-  isValid() {
-    const { errors, isValid } = validateInput(this.state)
-    if (!isValid) {
-      this.setState({ errors })
-    }
-    return isValid
-  }
-
   render() {
-    const { errors } = this.state
-    const options = map(timezones, (val, key) =>
-      <option key={val} value={val}>{key}</option>
-    )
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Join our community!</h1>
+      <Form
+        title="Join our community"
+        onSubmit={this.signup}
+        submitButtonText="Sign up"
+        fields={[
+          {
+            name: 'username',
+            label: 'Username',
+            required: true,
+            // TODO: checkUserExists
+          },
+          {
+            name: 'email',
+            label: 'Email',
+            required: true,
+            validateEmail: true,
+            // TODO: checkUserExists
+          },
+          {
+            name: 'password',
+            type: 'password',
+            label: 'Password',
+            required: true,
+          },
+          {
+            name: 'passwordConfirmation',
+            label: 'Password Confirmation',
+            required: true,
+            validateEqualTo: 'password',
+          },
+          {
+            name: 'timezone',
+            type: 'select',
+            options: timezones,
+            defaultOption: 'Choose your timezone',
+            label: 'Timezone',
+            required: true,
+          },
+        ]}
+      />
 
-        <TextFieldGroup
-          error={errors.username}
-          label="Username"
-          onChange={this.onChange}
-          checkUserExists={this.checkUserExists}
-          value={this.state.username}
-          field="username"
-        />
-
-        <TextFieldGroup
-          error={errors.email}
-          label="Email"
-          onChange={this.onChange}
-          checkUserExists={this.checkUserExists}
-          value={this.state.email}
-          field="email"
-        />
-
-        <TextFieldGroup
-          error={errors.password}
-          label="Password"
-          onChange={this.onChange}
-          value={this.state.password}
-          field="password"
-          type="password"
-        />
-
-        <TextFieldGroup
-          error={errors.passwordConfirmation}
-          label="Password Confirmation"
-          onChange={this.onChange}
-          value={this.state.passwordConfirmation}
-          field="passwordConfirmation"
-          type="password"
-        />
-
-        <div className={classnames('form-group', { 'has-error': errors.timezone })}>
-          <label htmlFor="timezone" className="control-label">
-            Timezone
-          </label>
-          <select
-            className="form-control"
-            name="timezone"
-            onChange={this.onChange}
-            value={this.state.timezone}
-          >
-            <option value="" disabled>Choose Your Timezone</option>
-            {options}
-          </select>
-          {errors.timezone &&
-            <span className="help-block">{errors.timezone}</span>
-          }
-        </div>
-
-
-        <div className="form-group">
-          <button
-            disabled={this.state.isLoading || this.state.invalid}
-            className="btn btn-primary btn-lg"
-          >
-            Sign up
-          </button>
-        </div>
-      </form>
     )
   }
 }

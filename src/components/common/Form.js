@@ -1,6 +1,8 @@
 import React from 'react'
 import Validator from 'validator'
+import classnames from 'classnames'
 import isEmpty from 'lodash/isEmpty'
+import map from 'lodash/map'
 import TextFieldGroup from '../common/TextFieldGroup'
 
 class Form extends React.Component {
@@ -43,8 +45,21 @@ class Form extends React.Component {
 
     const errors = {}
     fields.forEach((field) => {
-      if (field.required && Validator.isNull(values[field.name])) {
+      if (
+        field.required &&
+        Validator.isNull(values[field.name])
+      ) {
         errors[field.name] = 'This field is required'
+      } else if (
+        field.validateEmail &&
+        !Validator.isEmail(values[field.name])
+      ) {
+        errors[field.name] = 'Email is invalid'
+      } else if (
+        field.validateEqualTo &&
+        !Validator.equals(values[field.name], values[field.validateEqualTo])
+      ) {
+        errors[field.name] = `Does not match with ${field.validateEqualTo}`
       }
     })
 
@@ -76,15 +91,42 @@ class Form extends React.Component {
         }
 
         {fields.map((field, index) => (
-          <TextFieldGroup
-            type={field.type || 'text'}
-            field={field.name}
-            label={field.label}
-            value={values[field.name]}
-            error={errors[field.name]}
-            onChange={this.onChange}
-            key={index}
-          />
+          field.type === 'select'
+          ? (
+            <div
+              className={classnames('form-group', { 'has-error': errors[field.name] })}
+              key={index}
+            >
+              <label htmlFor={field.name} className="control-label">
+                {field.label}
+              </label>
+              <select
+                className="form-control"
+                name={field.name}
+                onChange={this.onChange}
+                value={values[field.name]}
+              >
+                <option value="" disabled>{field.defaultOption}</option>
+                {map(field.options, (val, key) =>
+                  <option key={val} value={val}>{key}</option>
+                )}
+              </select>
+              {errors[field.name] &&
+                <span className="help-block">{errors[field.name]}</span>
+              }
+            </div>
+          )
+          : (
+            <TextFieldGroup
+              type={field.type || 'text'}
+              field={field.name}
+              label={field.label}
+              value={values[field.name]}
+              error={errors[field.name]}
+              onChange={this.onChange}
+              key={index}
+            />
+          )
         ))}
 
         <div className="form-group">
