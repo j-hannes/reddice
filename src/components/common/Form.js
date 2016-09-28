@@ -1,4 +1,6 @@
 import React from 'react'
+import Validator from 'validator'
+import isEmpty from 'lodash/isEmpty'
 import TextFieldGroup from '../common/TextFieldGroup'
 
 class Form extends React.Component {
@@ -26,18 +28,30 @@ class Form extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
-    if (this.isValid()) {
+    const { errors, isValid } = this.validateInput()
+    if (isValid) {
       this.setState({ errors: {}, isLoading: true })
       this.props.onSubmit(this.state.values, this.handleServerError)
+    } else {
+      this.setState({ errors })
     }
   }
 
-  isValid() {
-    const { errors, isValid } = this.props.validateInput(this.state.values)
-    if (!isValid) {
-      this.setState({ errors })
+  validateInput() {
+    const { values } = this.state
+    const { fields } = this.props
+
+    const errors = {}
+    fields.forEach((field) => {
+      if (field.required && Validator.isNull(values[field.name])) {
+        errors[field.name] = 'This field is required'
+      }
+    })
+
+    return {
+      errors,
+      isValid: isEmpty(errors),
     }
-    return isValid
   }
 
   handleServerError({ response }) {
@@ -55,13 +69,12 @@ class Form extends React.Component {
       <form onSubmit={this.onSubmit}>
         <h1>{title}</h1>
 
-        { errors.form &&
+        {errors.form &&
           <div className="alert alert-danger">
             {errors.form}
           </div>
         }
 
-        {/* TODO can we map over */}
         {fields.map((field, index) => (
           <TextFieldGroup
             type={field.type || 'text'}
@@ -79,7 +92,7 @@ class Form extends React.Component {
             className="btn btn-primary btn-lg"
             disabled={isLoading}
           >
-            {submitButtonText || 'Submit'}
+            {submitButtonText}
           </button>
         </div>
       </form>
@@ -92,7 +105,10 @@ Form.propTypes = {
   submitButtonText: React.PropTypes.string,
   fields: React.PropTypes.arrayOf(React.PropTypes.object),
   onSubmit: React.PropTypes.func.isRequired,
-  validateInput: React.PropTypes.func.isRequired,
+}
+
+Form.defaultProps = {
+  submitButtonText: 'Submit',
 }
 
 export default Form

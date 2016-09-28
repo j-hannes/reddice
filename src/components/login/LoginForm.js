@@ -1,29 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Validator from 'validator'
-import isEmpty from 'lodash/isEmpty'
 
 import { login } from '../../actions/authActions'
 import Form from '../common/Form'
-
-// FIXME
-function validateInput(data) {
-  const errors = {}
-
-  if (Validator.isNull(data.identifier)) {
-    errors.identifier = 'This field is required'
-  }
-
-  if (Validator.isNull(data.password)) {
-    errors.password = 'This field is required'
-  }
-
-  return {
-    errors,
-    isValid: isEmpty(errors),
-  }
-}
-
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -43,7 +22,6 @@ class LoginForm extends React.Component {
         title="Login"
         onSubmit={this.login}
         submitButtonText="Login"
-        validateInput={validateInput}
         fields={[
           {
             name: 'identifier',

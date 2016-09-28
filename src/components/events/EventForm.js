@@ -3,16 +3,11 @@ import { connect } from 'react-redux'
 import { createEvent } from '../../actions/eventActions'
 import Form from '../common/Form'
 
-function validateInput() {
-  return { isValid: true }
-}
-
 function EventForm(props) {
   return (
     <Form
       title="Create New Game Event"
       onSubmit={props.createEvent}
-      validateInput={validateInput}
       fields={[
         {
           name: 'title',
