@@ -1,9 +1,8 @@
 import React from 'react'
 import Validator from 'validator'
-import classnames from 'classnames'
 import isEmpty from 'lodash/isEmpty'
-import map from 'lodash/map'
 import TextFieldGroup from '../common/TextFieldGroup'
+import SelectFieldGroup from '../common/SelectFieldGroup'
 
 class Form extends React.Component {
 
@@ -93,33 +92,21 @@ class Form extends React.Component {
         {fields.map((field, index) => (
           field.type === 'select'
           ? (
-            <div
-              className={classnames('form-group', { 'has-error': errors[field.name] })}
+            <SelectFieldGroup
+              name={field.name}
+              label={field.label}
+              value={values[field.name]}
+              error={errors[field.name]}
+              options={field.options}
+              defaultOption={field.defaultOption}
+              onChange={this.onChange}
               key={index}
-            >
-              <label htmlFor={field.name} className="control-label">
-                {field.label}
-              </label>
-              <select
-                className="form-control"
-                name={field.name}
-                onChange={this.onChange}
-                value={values[field.name]}
-              >
-                <option value="" disabled>{field.defaultOption}</option>
-                {map(field.options, (val, key) =>
-                  <option key={val} value={val}>{key}</option>
-                )}
-              </select>
-              {errors[field.name] &&
-                <span className="help-block">{errors[field.name]}</span>
-              }
-            </div>
+            />
           )
           : (
             <TextFieldGroup
               type={field.type || 'text'}
-              field={field.name}
+              name={field.name}
               label={field.label}
               value={values[field.name]}
               error={errors[field.name]}

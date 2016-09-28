@@ -75,6 +75,7 @@ class SignupForm extends React.Component {
           },
           {
             name: 'passwordConfirmation',
+            type: 'password',
             label: 'Password Confirmation',
             required: true,
             validateEqualTo: 'password',

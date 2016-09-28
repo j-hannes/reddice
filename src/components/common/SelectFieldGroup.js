@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-
+import map from 'lodash/map'
 
 function TextFieldGroup(props) {
   return (
@@ -8,16 +8,20 @@ function TextFieldGroup(props) {
       <label htmlFor={props.name} className="control-label">
         {props.label}
       </label>
-      <input
-        value={props.value}
-        onChange={props.onChange}
-        onBlur={props.checkUserExists}
-        type={props.type}
-        name={props.name}
+      <select
         className="form-control"
-      />
+        name={props.name}
+        onChange={props.onChange}
+        value={props.value}
+      >
+        <option value="" disabled>{props.defaultOption}</option>
+        {map(props.options, (val, key) =>
+          <option key={val} value={val}>{key}</option>
+        )}
+      </select>
       {props.error && <span className="help-block">{props.error}</span>}
     </div>
+
   )
 }
 
@@ -26,13 +30,9 @@ TextFieldGroup.propTypes = {
   value: React.PropTypes.string.isRequired,
   label: React.PropTypes.string.isRequired,
   error: React.PropTypes.string,
-  type: React.PropTypes.string.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  checkUserExists: React.PropTypes.func,
-}
-
-TextFieldGroup.defaultProps = {
-  type: 'text',
+  options: React.PropTypes.shape().isRequired,
+  defaultOption: React.PropTypes.string.isRequired,
 }
 
 export default TextFieldGroup
