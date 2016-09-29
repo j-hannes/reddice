@@ -1,5 +1,5 @@
 import shortid from 'shortid'
-import { removeItem } from '../utils/list'
+import { removeItem } from '../lib/array'
 import {
   ADD_FLASH_MESSAGE,
   DELETE_FLASH_MESSAGE,

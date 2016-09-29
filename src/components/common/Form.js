@@ -1,6 +1,7 @@
 import React from 'react'
 import Validator from 'validator'
 import isEmpty from 'lodash/isEmpty'
+import { update, populate } from '../../lib/object'
 import TextFieldGroup from '../common/TextFieldGroup'
 import SelectFieldGroup from '../common/SelectFieldGroup'
 
@@ -8,20 +9,8 @@ class Form extends React.Component {
 
   constructor(props) {
     super(props)
-    this.setInitialState(props)
     this.bindMethods()
-  }
-
-  setInitialState(props) {
-    const values = {}
-    props.fields.forEach((field) => {
-      values[field.name] = field.initialValue || ''
-    })
-    this.state = {
-      errors: {},
-      isLoading: false,
-      values,
-    }
+    this.setInitialState(props)
   }
 
   bindMethods() {
@@ -30,12 +19,17 @@ class Form extends React.Component {
     this.handleServerError = this.handleServerError.bind(this)
   }
 
-  onChange(e) {
+  setInitialState(props) {
+    this.state = {
+      errors: {},
+      isLoading: false,
+      values: populate(props.fields, 'name', 'initialValue', ''),
+    }
+  }
+
+  onChange({ target }) {
     this.setState({
-      values: {
-        ...this.state.values,
-        [e.target.name]: e.target.value,
-      },
+      values: update(this.state.values, target.name, target.value),
     })
   }
 
