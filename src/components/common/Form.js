@@ -8,11 +8,23 @@ class Form extends React.Component {
 
   constructor(props) {
     super(props)
+    this.setInitialState(props)
+    this.bindMethods()
+  }
+
+  setInitialState(props) {
+    const values = {}
+    props.fields.forEach((field) => {
+      values[field.name] = field.initialValue || ''
+    })
     this.state = {
       errors: {},
       isLoading: false,
-      values: props.fields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {}), // FIXME
+      values,
     }
+  }
+
+  bindMethods() {
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.handleServerError = this.handleServerError.bind(this)

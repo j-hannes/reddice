@@ -9,13 +9,15 @@ function TextFieldGroup(props) {
         {props.label}
       </label>
       <input
+        className="form-control"
+        name={props.name}
         value={props.value}
         onChange={props.onChange}
         onBlur={props.checkUserExists}
         type={props.type}
-        name={props.name}
-        className="form-control"
       />
+
+
       {props.error && <span className="help-block">{props.error}</span>}
     </div>
   )

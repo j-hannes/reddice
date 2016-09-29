@@ -11,8 +11,8 @@ function TextFieldGroup(props) {
       <select
         className="form-control"
         name={props.name}
-        onChange={props.onChange}
         value={props.value}
+        onChange={props.onChange}
       >
         <option value="" disabled>{props.defaultOption}</option>
         {map(props.options, (val, key) =>
