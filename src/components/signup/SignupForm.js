@@ -13,7 +13,6 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props)
     this.signup = this.signup.bind(this)
-    this.checkUserExists = this.checkUserExists.bind(this)
   }
 
   signup(values, handleServerError) {
@@ -28,25 +27,6 @@ class SignupForm extends React.Component {
       .catch(handleServerError)
   }
 
-  checkUserExists(e) {
-    const field = e.target.name
-    const val = e.target.value
-    if (val !== '') {
-      this.props.isUserExists(val).then((res) => {
-        const errors = this.state.errors
-        let invalid
-        if (res.data.user) {
-          errors[field] = `There is user with such ${field}`
-          invalid = true
-        } else {
-          errors[field] = ''
-          invalid = false
-        }
-        this.setState({ errors, invalid })
-      })
-    }
-  }
-
   render() {
     return (
       <Form
@@ -58,14 +38,16 @@ class SignupForm extends React.Component {
             name: 'username',
             label: 'Username',
             required: true,
-            // TODO: checkUserExists
+            onBlur: this.props.isUserExists,
+            onBlurErrorPrefix: 'There is user with such',
           },
           {
             name: 'email',
             label: 'Email',
             required: true,
             validateEmail: true,
-            // TODO: checkUserExists
+            onBlur: this.props.isUserExists,
+            onBlurErrorPrefix: 'There is user with such',
           },
           {
             name: 'password',

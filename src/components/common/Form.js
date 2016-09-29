@@ -16,6 +16,7 @@ class Form extends React.Component {
   bindMethods() {
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
+    this.onBlur = this.onBlur.bind(this)
     this.handleServerError = this.handleServerError.bind(this)
   }
 
@@ -24,6 +25,7 @@ class Form extends React.Component {
       errors: {},
       isLoading: false,
       values: populate(props.fields, 'name', 'initialValue', ''),
+      fields: populate(props.fields, 'name', '*'),
     }
   }
 
@@ -74,6 +76,25 @@ class Form extends React.Component {
     }
   }
 
+  onBlur(e) {
+    const name = e.target.name
+    const val = e.target.value
+    const { fields, errors } = this.state
+    if (fields[name].onBlur && val !== '') {
+      fields[name].onBlur(val).then((res) => {
+        let invalid
+        if (res.data.user) {
+          errors[name] = `${fields[name].onBlurErrorPrefix} ${name}`
+          invalid = true
+        } else {
+          errors[name] = ''
+          invalid = false
+        }
+        this.setState({ errors, invalid })
+      })
+    }
+  }
+
   handleServerError({ response }) {
     this.setState({
       errors: response.data.errors,
@@ -117,6 +138,7 @@ class Form extends React.Component {
               value={values[field.name]}
               error={errors[field.name]}
               onChange={this.onChange}
+              onBlur={this.onBlur}
               key={index}
             />
           )

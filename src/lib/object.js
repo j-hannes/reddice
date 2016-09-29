@@ -9,7 +9,9 @@ export const populate = (sourceMap, keyField, valueField, defaultValue) =>
       update(
         populated,
         sourceItem[keyField],
-        sourceItem[valueField] || defaultValue
+        valueField === '*'
+          ? sourceItem
+          : sourceItem[valueField] || defaultValue
       ),
     {}
   )

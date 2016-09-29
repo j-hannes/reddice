@@ -14,7 +14,7 @@ function TextFieldGroup(props) {
         name={props.name}
         value={props.value}
         onChange={props.onChange}
-        onBlur={props.checkUserExists}
+        onBlur={props.onBlur}
         type={props.type}
       />
     </FieldGroup>
@@ -28,7 +28,7 @@ TextFieldGroup.propTypes = {
   type: React.PropTypes.string.isRequired,
   error: React.PropTypes.string,
   onChange: React.PropTypes.func.isRequired,
-  checkUserExists: React.PropTypes.func,
+  onBlur: React.PropTypes.func,
 }
 
 TextFieldGroup.defaultProps = {
