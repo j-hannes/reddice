@@ -39,7 +39,7 @@ class SignupForm extends React.Component {
             label: 'Username',
             required: true,
             onBlur: this.props.isUserExists,
-            onBlurErrorPrefix: 'There is user with such',
+            onBlurError: 'Username already taken',
           },
           {
             name: 'email',
@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
             required: true,
             validateEmail: true,
             onBlur: this.props.isUserExists,
-            onBlurErrorPrefix: 'There is user with such',
+            onBlurError: 'Email already registered',
           },
           {
             name: 'password',

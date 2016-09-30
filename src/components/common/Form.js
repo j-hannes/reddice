@@ -82,15 +82,8 @@ class Form extends React.Component {
     const { fields, errors } = this.state
     if (fields[name].onBlur && val !== '') {
       fields[name].onBlur(val).then((res) => {
-        let invalid
-        if (res.data.user) {
-          errors[name] = `${fields[name].onBlurErrorPrefix} ${name}`
-          invalid = true
-        } else {
-          errors[name] = ''
-          invalid = false
-        }
-        this.setState({ errors, invalid })
+        errors[name] = res.data.user ? fields[name].onBlurError : ''
+        this.setState({ errors })
       })
     }
   }
