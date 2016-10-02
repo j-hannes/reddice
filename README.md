@@ -1,13 +1,14 @@
 # REDDICE / ALCLIENT
 
 Project has been created by following along this awesome
-[turorial series from Rem](). TODO: insert link
+[turorial series from Rem](https://www.youtube.com/watch?v=5oiXG9f6GO0&list=PLuNEz8XtB51K-x3bwCC9uNM_cxXaiCcRY).
 
 ## next steps
 
-- [x] use eslint (3.6)
-- [ ] HOC form
-- [x] standard layout
+- [x] ~~use eslint (3.6)~~
+- [x] ~~HOC form~~
+- [x] ~~standard layout~~
+- [x] ~~use react-bootstrap~~
 - [ ] use only stateless components, put everything else in redux
 - [ ] group files by feature
 - [ ] recreate client in elm
