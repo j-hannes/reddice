@@ -14,10 +14,7 @@ const NavigationWrapper = ({ links }) => (
     <Navbar.Collapse>
       <Nav pullRight>
         {links.map((link, index) =>
-          <LinkContainer
-            key={index}
-            to={{ pathname: link.route }}
-          >
+          <LinkContainer key={index} to={link.route} active={false}>
             <NavItem>{link.text}</NavItem>
           </LinkContainer>
         )}
