@@ -6,10 +6,13 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import jwtDecode from 'jwt-decode'
 
+import 'bootstrap/dist/css/bootstrap.css'
+
 import routes from './routes'
 import rootReducer from './rootReducer'
 import setAuthorizationToken from './utils/setAuthorizationToken'
 import { setCurrentUser } from './actions/authActions'
+
 
 const store = createStore(
   rootReducer,
