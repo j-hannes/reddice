@@ -7,7 +7,9 @@ import {
   userSignupRequest,
   isUserExists,
 } from '../../actions/signupActions'
-import { addFlashMessage } from '../../actions/flashMessages'
+import {
+  addFlashMessage,
+} from '../../actions/flashMessages'
 
 class SignupForm extends React.Component {
   constructor(props) {
