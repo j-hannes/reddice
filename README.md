@@ -11,6 +11,7 @@ Project has been created by following along this awesome
 - [x] ~~use react-bootstrap~~
 - [ ] use only stateless components, put everything else in redux
 - [ ] group files by feature
+- [ ] use flow
 - [ ] recreate client in elm
 
 
