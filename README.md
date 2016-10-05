@@ -9,7 +9,8 @@ Project has been created by following along this awesome
 - [x] ~~HOC form~~
 - [x] ~~standard layout~~
 - [x] ~~use react-bootstrap~~
-- [ ] use only stateless components, put everything else in redux
+- [x] use only stateless components, put everything else in redux
+- [ ] use immutable.js
 - [ ] group files by feature
 - [ ] use flow
 - [ ] recreate client in elm

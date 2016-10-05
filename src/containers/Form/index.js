@@ -102,19 +102,19 @@ const mapDispatchToProps = dispatch => ({
   // NOTE experiment to have actions namespaced in props and not mixed in with
   // passed props ... can we do the same thing with state?
   actions: {
+    initialize: fields =>
+      dispatch(actions.initialize(fields)),
+
     updateField: e =>
       dispatch(actions.updateField(e.target.name, e.target.value)),
+
+    onBlur: e =>
+      dispatch(actions.onBlur(e.target.name, e.target.value)),
 
     validateForm: props => (e) => {
       e.preventDefault()
       dispatch(actions.validateForm(props))
     },
-
-    initialize: fields =>
-      dispatch(actions.initialize(fields)),
-
-    onBlur: e =>
-      dispatch(actions.onBlur(e.target.name, e.target.value)),
   },
 })
 
