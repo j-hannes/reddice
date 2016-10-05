@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import timezones from '../../data/timezones'
-import Form from '../common/Form'
+import Form from '../../containers/Form'
 import {
   userSignupRequest,
   isUserExists,
@@ -33,7 +33,7 @@ class SignupForm extends React.Component {
     return (
       <Form
         title="Join our community"
-        onSubmit={this.signup}
+        submit={this.signup}
         submitButtonText="Sign up"
         fields={[
           {

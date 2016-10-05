@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { login } from '../../actions/authActions'
-import Form from '../common/Form'
+import Form from '../../containers/Form'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     return (
       <Form
         title="Login"
-        onSubmit={this.login}
+        submit={this.login}
         submitButtonText="Login"
         fields={[
           {
