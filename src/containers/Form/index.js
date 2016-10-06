@@ -77,6 +77,8 @@ class Form extends React.Component {
   }
 }
 
+// TODO can proptypes be replaced with flow types?
+
 Form.propTypes = {
   title: React.PropTypes.string.isRequired,
   submitButtonText: React.PropTypes.string,
@@ -117,5 +119,16 @@ const mapDispatchToProps = dispatch => ({
     },
   },
 })
+
+
+// TODO fix this and move to utils
+// const mapDispatchToActions = actions => dispatch => ({
+//   actions: Object.keys(actions).reduce((acc, action) => ({
+//     ...acc,
+//     [action]: dispatch(actions[action].apply(...actions[action].args)),
+//   }), {}),
+// })
+
+// export default connect(mapStateToProps, mapDispatchToActions(actions))(Form)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)
