@@ -25,6 +25,16 @@ export const setErrors = errors => ({
   errors,
 })
 
+export const isLoading = isLoading => ({
+  type: IS_LOADING,
+  isLoading,
+})
+
+export const onError = ({ response }) => (dispatch) => {
+  dispatch(setErrors(response.data.errors))
+  dispatch(isLoading(false))
+}
+
 export const onBlur = (name, val) => (dispatch, getState) => {
   const { fields, errors } = getState().form
   if (fields[name].onBlur && val !== '') {
@@ -33,19 +43,6 @@ export const onBlur = (name, val) => (dispatch, getState) => {
       dispatch(setErrors(errors))
     })
   }
-}
-
-export const isLoading = isLoading => ({
-  // TODO this does not need to be a separate action?
-  // think about request, success, failure
-  type: IS_LOADING,
-  isLoading,
-})
-
-export const onError = ({ response }) => (dispatch) => {
-  // TODO can this be "merged" with setErrors below?
-  dispatch(setErrors(response.data.errors))
-  dispatch(isLoading(false))
 }
 
 export const validateForm = ({ fields, submit }) => (dispatch, getState) => {
