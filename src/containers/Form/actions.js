@@ -51,6 +51,6 @@ export const validateForm = ({ fields, submit }) => (dispatch, getState) => {
   dispatch(setErrors(errors))
   if (isEmpty(errors)) {
     dispatch(isLoading(true))
-    submit(values, onError)
+    dispatch(submit(values, onError))
   }
 }
