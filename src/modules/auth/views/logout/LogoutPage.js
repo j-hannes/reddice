@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import StandardLayout from '../../layouts/StandardLayout'
-import { logout } from '../../actions/authActions'
+import StandardLayout from '../../../../layouts/StandardLayout'
+import { logout } from '../../actions'
 
 class LogoutPage extends React.Component {
 

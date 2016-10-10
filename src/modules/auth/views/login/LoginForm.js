@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { login } from '../../actions/authActions'
-import Form from '../common/Form'
+import { login } from '../../actions'
+import Form from '../../../../components/common/Form'
 
 class LoginForm extends React.Component {
   constructor(props) {

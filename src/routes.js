@@ -4,11 +4,11 @@ import { Route, IndexRoute } from 'react-router'
 import App from './components/App'
 import Greetings from './components/Greetings'
 import SignupPage from './components/signup/SignupPage'
-import LoginPage from './components/login/LoginPage'
-import LogoutPage from './components/logout/LogoutPage'
+import LoginPage from './modules/auth/views/login/LoginPage'
+import LogoutPage from './modules/auth/views/logout/LogoutPage'
 import NewEventPage from './components/events/NewEventPage'
 
-import requireAuth from './utils/requireAuth'
+import { requireAuth } from './modules/auth/utils'
 
 export default (
   <Route path="/" component={App}>
