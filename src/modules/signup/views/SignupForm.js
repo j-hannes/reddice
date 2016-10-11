@@ -7,9 +7,10 @@ import {
   userSignupRequest,
   isUserExists,
 } from '../actions'
+// FIXME direct access of other modules is bad
 import {
   addFlashMessage,
-} from '../../../actions/flashMessages'
+} from '../../flash-messages/actions'
 
 class SignupForm extends React.Component {
   constructor(props) {

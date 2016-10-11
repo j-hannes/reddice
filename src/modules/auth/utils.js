@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { addFlashMessage } from '../../actions/flashMessages'
+// FIXME direct access of other modules is bad
+import { addFlashMessage } from '../flash-messages/actions'
 
 export function setAuthorizationToken(token) {
   if (token) {

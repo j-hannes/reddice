@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createEvent } from '../../actions/eventActions'
-import Form from '../common/Form'
+import { createEvent } from '../actions'
+import Form from '../../../components/common/Form'
 
 function EventForm(props) {
   return (

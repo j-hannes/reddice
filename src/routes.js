@@ -6,7 +6,7 @@ import Greetings from './components/Greetings'
 import SignupPage from './modules/signup/views/SignupPage'
 import LoginPage from './modules/auth/views/login/LoginPage'
 import LogoutPage from './modules/auth/views/logout/LogoutPage'
-import NewEventPage from './components/events/NewEventPage'
+import NewEventPage from './modules/event/views/NewEventPage'
 
 import { requireAuth } from './modules/auth/utils'
 
