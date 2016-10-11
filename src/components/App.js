@@ -1,5 +1,5 @@
 import React from 'react'
-import NavigationBar from './NavigationBar'
+import NavigationBar from '../modules/navigation'
 import FlashMessageList from '../modules/flash-messages'
 
 // top component needs to be a component class, so:

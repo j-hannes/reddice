@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { userLinks, guestLinks } from '../config/navigation.json'
+import { userLinks, guestLinks } from './config.json'
 
-import NavigationWrapper from './NavigationWrapper'
+import NavigationWrapper from './components/NavigationWrapper'
 
 const NavigationBar = props =>
   <NavigationWrapper
