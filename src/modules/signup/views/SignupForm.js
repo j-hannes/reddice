@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import timezones from '../../data/timezones'
-import Form from '../common/Form'
+import timezones from '../data/timezones'
+import Form from '../../../components/common/Form'
 import {
   userSignupRequest,
   isUserExists,
-} from '../../actions/signupActions'
+} from '../actions'
 import {
   addFlashMessage,
-} from '../../actions/flashMessages'
+} from '../../../actions/flashMessages'
 
 class SignupForm extends React.Component {
   constructor(props) {

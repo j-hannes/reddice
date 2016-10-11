@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 
 import App from './components/App'
 import Greetings from './components/Greetings'
-import SignupPage from './components/signup/SignupPage'
+import SignupPage from './modules/signup/views/SignupPage'
 import LoginPage from './modules/auth/views/login/LoginPage'
 import LogoutPage from './modules/auth/views/logout/LogoutPage'
 import NewEventPage from './components/events/NewEventPage'
