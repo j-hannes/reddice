@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from './components/App'
-import Greetings from './components/Greetings'
+import Home from './modules/home'
 import SignupPage from './modules/signup'
 import LoginPage from './modules/auth/login'
 import LogoutPage from './modules/auth/logout'
@@ -12,7 +12,7 @@ import { requireAuth } from './modules/auth/utils'
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Greetings} />
+    <IndexRoute component={Home} />
     <Route path="signup" component={SignupPage} />
     <Route path="login" component={LoginPage} />
     <Route path="logout" component={LogoutPage} />

@@ -2,7 +2,7 @@ import React from 'react'
 
 // route component needs to be a component class, so:
 // eslint-disable-next-line react/prefer-stateless-function
-class Greetings extends React.Component {
+class Home extends React.Component {
   // ... and:
   // eslint-disable-next-line class-methods-use-this
   render() {
@@ -14,4 +14,4 @@ class Greetings extends React.Component {
   }
 }
 
-export default Greetings
+export default Home
