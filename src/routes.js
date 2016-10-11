@@ -3,10 +3,10 @@ import { Route, IndexRoute } from 'react-router'
 
 import App from './components/App'
 import Greetings from './components/Greetings'
-import SignupPage from './modules/signup/views/SignupPage'
+import SignupPage from './modules/signup'
 import LoginPage from './modules/auth/views/login/LoginPage'
 import LogoutPage from './modules/auth/views/logout/LogoutPage'
-import NewEventPage from './modules/event/views/NewEventPage'
+import NewEventPage from './modules/event'
 
 import { requireAuth } from './modules/auth/utils'
 
