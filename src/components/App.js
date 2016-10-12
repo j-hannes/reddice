@@ -1,6 +1,6 @@
 import React from 'react'
-import NavigationBar from './NavigationBar'
-import FlashMessageList from './flash/FlashMessageList'
+import NavigationBar from '../modules/navigation'
+import FlashMessageList from '../modules/flash-messages'
 
 // top component needs to be a component class, so:
 // eslint-disable-next-line react/prefer-stateless-function

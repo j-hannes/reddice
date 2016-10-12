@@ -1,18 +1,17 @@
 import React from 'react'
-
-import LoginForm from './LoginForm'
+import EventForm from './containers/EventForm'
 import StandardLayout from '../../layouts/StandardLayout'
 
 // route component needs to be a component class, so:
 // eslint-disable-next-line react/prefer-stateless-function
-class LoginPage extends React.Component {
+class NewEventPage extends React.Component {
   render() {
     return (
       <StandardLayout>
-        <LoginForm />
+        <EventForm />
       </StandardLayout>
     )
   }
 }
 
-export default LoginPage
+export default NewEventPage

@@ -1,5 +1,5 @@
 import React from 'react'
-import SignupForm from './SignupForm'
+import SignupForm from './containers/SignupForm'
 import StandardLayout from '../../layouts/StandardLayout'
 
 // route component needs to be a component class, so:

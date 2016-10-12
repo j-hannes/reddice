@@ -1,7 +1,7 @@
 import {
   ADD_FLASH_MESSAGE,
   DELETE_FLASH_MESSAGE,
-} from './types'
+} from './constants'
 
 export const addFlashMessage = message => ({
   type: ADD_FLASH_MESSAGE,

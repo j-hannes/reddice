@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 import routes from './routes'
 import rootReducer from './rootReducer'
-import setAuthorizationToken from './utils/setAuthorizationToken'
-import { setCurrentUser } from './actions/authActions'
+import { setAuthorizationToken } from './modules/auth/utils'
+import { setCurrentUser } from './modules/auth/actions'
 
 
 const store = createStore(

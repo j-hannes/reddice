@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FlashMessage from './FlashMessage'
-import { Message, func } from '../../types'
-import { deleteFlashMessage } from '../../actions/flashMessages'
+import FlashMessage from './components/FlashMessage'
+import { Message, func } from './types'
+import { deleteFlashMessage } from './actions'
 
 const FlashMessageList = props =>
   <div>

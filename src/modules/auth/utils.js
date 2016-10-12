@@ -1,8 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addFlashMessage } from '../actions/flashMessages'
+import axios from 'axios'
+// FIXME direct access of other modules is bad
+import { addFlashMessage } from '../flash-messages/actions'
 
-export default function (ComposedComponent) {
+export function setAuthorizationToken(token) {
+  if (token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  } else {
+    delete axios.defaults.headers.common.Authorization
+  }
+}
+
+export function requireAuth(ComposedComponent) {
   class Authenticate extends React.Component {
     componentWillMount() {
       if (!this.props.isAuthenticated) {
