@@ -5,15 +5,16 @@ Project has been created by following along this awesome
 
 ## next steps
 
-- [x] ~~use eslint (3.6)~~
-- [x] ~~HOC form~~
-- [x] ~~standard layout~~
-- [x] ~~use react-bootstrap~~
-- [ ] use only stateless components, put everything else in redux
+- [x] use eslint (3.6)
+- [x] HOC form
+- [x] standard layout
+- [x] use react-bootstrap
+- [x] group files by feature
 - [ ] use immutable.js
-- [ ] group files by feature
+- [ ] let fields be a map instead of an array
 - [ ] use flow
 - [ ] recreate client in elm
+- [ ] * use only stateless components, put everything else in redux
 
 
 ---
