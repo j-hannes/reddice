@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FlashMessage from './components/FlashMessage'
-import { Message, func } from './types'
 import { deleteFlashMessage } from './actions'
 
 const FlashMessageList = props =>
   <div>
     {props.messages.map(message =>
       <FlashMessage
-        key={message.id}
+        key={message.get('id')}
         message={message}
         deleteFlashMessage={props.deleteFlashMessage}
       />
@@ -16,12 +15,12 @@ const FlashMessageList = props =>
   </div>
 
 FlashMessageList.propTypes = {
-  messages: Message,
-  deleteFlashMessage: func,
+  messages: React.PropTypes.shape(),
+  deleteFlashMessage: React.PropTypes.func,
 }
 
 const mapStateToProps = state => ({
-  messages: state.flashMessages,
+  messages: state.get('flashMessages'),
 })
 
 export default connect(mapStateToProps, {

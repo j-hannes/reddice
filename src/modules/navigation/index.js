@@ -15,7 +15,7 @@ NavigationBar.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: state.getIn(['auth', 'isAuthenticated']),
 })
 
 export default connect(mapStateToProps)(NavigationBar)
