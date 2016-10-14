@@ -8,16 +8,16 @@ class FlashMessage extends React.Component {
   }
 
   onClick() {
-    this.props.deleteFlashMessage(this.props.message.id)
+    this.props.deleteFlashMessage(this.props.message.get('id'))
   }
 
   render() {
-    const { type, text } = this.props.message
+    const { message } = this.props
     return (
       <div
         className={classnames('alert', {
-          'alert-success': type === 'success',
-          'alert-danger': type === 'error',
+          'alert-success': message.get('type') === 'success',
+          'alert-danger': message.get('type') === 'error',
         })}
       >
         <button
@@ -26,18 +26,14 @@ class FlashMessage extends React.Component {
         >
           <span>&times;</span>
         </button>
-        {text}
+        {message.get('text')}
       </div>
     )
   }
 }
 
 FlashMessage.propTypes = {
-  message: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    type: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
-  }).isRequired,
+  message: React.PropTypes.shape().isRequired,
   deleteFlashMessage: React.PropTypes.func.isRequired,
 }
 

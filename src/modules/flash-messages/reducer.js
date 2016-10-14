@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable'
 import shortid from 'shortid'
 import { removeItem } from '../../lib/array'
 import {
@@ -5,17 +6,16 @@ import {
   DELETE_FLASH_MESSAGE,
 } from './constants'
 
-export default (state = [], action = {}) => {
+const initialState = fromJS([])
+
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ADD_FLASH_MESSAGE:
-      return [
-        ...state,
-        {
-          id: shortid.generate(),
-          type: action.message.type,
-          text: action.message.text,
-        },
-      ]
+      return state.push(fromJS({
+        id: shortid.generate(),
+        type: action.message.type,
+        text: action.message.text,
+      }))
 
     case DELETE_FLASH_MESSAGE:
       return removeItem({ id: action.id }, state)
